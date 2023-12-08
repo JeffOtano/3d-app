@@ -82,7 +82,7 @@ export default function Home() {
             <Switch checked={orbitControl} onChange={setOrbitControl} />
           </div>
         </div>
-        <div className="flex w-full h-full lg:mt-10">
+        <div className="flex w-full h-3/5 lg:mt-10">
           <ScapulaSphere
             x={xInSceneUnits}
             y={yInSceneUnits}
