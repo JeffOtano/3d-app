@@ -8,8 +8,6 @@ import {
   GoArrowUp,
   GoArrowLeft,
   GoArrowRight,
-  GoArrowForward,
-  GoArrowBackward,
   GoArrowDownLeft,
   GoArrowUpRight,
 } from "react-icons/go";
@@ -71,7 +69,7 @@ export default function Home() {
   return (
     <main className={`min-h-screen ${inter.className}`}>
       <div className="w-screen h-screen items-center flex justify-evenly flex-col-reverse lg:flex-col bg-black">
-        <div className="flex h-2/5 flex-col text-white text-lg gap-2 p-5 border rounded-xl lg:mt-2 mb-2 lg:mb-0 justify-between items-center">
+        <div className="flex h-fit flex-col text-white text-lg gap-2 p-5 border rounded-xl lg:mt-2 mb-2 lg:mb-0 justify-between items-center">
           {/* Controls for X, Y, Z axis */}
           {directions.map((direction) => (
             <DirectionControl
