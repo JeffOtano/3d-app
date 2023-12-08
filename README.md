@@ -7,8 +7,6 @@ Interactive 3D model of a human scapula.
 Real-time manipulation of the model along the Medial/Lateral, Superior/Inferior, and Anterior/Posterior axes.
 Responsive design for both desktop and mobile devices.
 Incremental adjustments with clear UI controls.
-Installation
-To run this project locally, follow these steps:
 
 ### Usage
 The application allows users to interact with the 3D model using on-screen controls. Adjustments can be made along the specified axes using increment and decrement buttons, providing detailed control over the model's orientation and position.
