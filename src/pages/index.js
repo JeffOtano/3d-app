@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import { ScapulaSphere } from "@/components/ScapulaSphere";
 import { useEffect, useState } from "react";
+import { DirectionControl } from "@/components/DirectionControl";
+import { Switch } from "@/components/Switch";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +26,7 @@ export default function Home() {
   const [y, setY] = useState(0);
   const [z, setZ] = useState(0);
   const [screenScale, setScreenScale] = useState(1);
+  const [orbitControl, setOrbitControl] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,25 +55,18 @@ export default function Home() {
   return (
     <main className={`min-h-screen ${inter.className}`}>
       <div className="w-screen h-screen items-center flex flex-col-reverse lg:flex-col bg-black">
-        <div className="flex flex-col text-lg gap-2 p-5 border rounded-lg m-2 w-fit">
+        <div className="flex flex-col text-white text-lg gap-2 p-5 border rounded-lg m-2 w-fit">
           {/* Controls for X, Y, Z axis */}
           {directions.map((direction) => (
-            <div key={direction.axis} className="flex text-white items-center">
-              <label className="mr-2 w-40">{direction.name}</label>
-              <button
-                className="border rounded w-10 flex h-10 items-center justify-center"
-                onClick={() => adjustPosition(direction.axis, -5)}
-              >
-                -
-              </button>
-              <button
-                className="border rounded w-10 ml-2 flex h-10 items-center justify-center"
-                onClick={() => adjustPosition(direction.axis, 5)}
-              >
-                +
-              </button>
-            </div>
+            <DirectionControl
+              direction={direction}
+              adjustPosition={adjustPosition}
+            />
           ))}
+          <div className="flex items-center">
+            <p className="mr-2 w-40">Orbit controls</p>
+            <Switch checked={orbitControl} onChange={setOrbitControl} />
+          </div>
         </div>
         <div className="flex w-full h-full items-center justify-center lg:mt-10">
           <ScapulaSphere
@@ -78,6 +74,7 @@ export default function Home() {
             y={yInSceneUnits}
             z={zInSceneUnits}
             screenScale={screenScale}
+            orbitControl={orbitControl}
           />
         </div>
       </div>

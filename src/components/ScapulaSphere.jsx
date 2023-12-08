@@ -28,14 +28,14 @@ const Loader = () => {
   );
 };
 
-export const ScapulaSphere = ({ x, y, z, screenScale }) => {
+export const ScapulaSphere = ({ x, y, z, screenScale, orbitControl }) => {
   return (
     <Canvas className="w-full">
       <PerspectiveCamera position={[0, 0, 5]} fov={75} />
       <Suspense fallback={Loader}>
         <ambientLight position={[0, 0, 0]} intensity={0.8} />
         <pointLight position={[0, 10, 0]} intensity={100} />
-        <OrbitControls />
+        {orbitControl && <OrbitControls />}
         <Model screenScale={screenScale} />
         <Sphere
           args={[1 * screenScale, 16, 16]}
