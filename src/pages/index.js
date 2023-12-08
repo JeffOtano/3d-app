@@ -69,7 +69,7 @@ export default function Home() {
   return (
     <main className={`min-h-screen ${inter.className}`}>
       <div className="w-screen h-screen items-center flex justify-evenly flex-col-reverse lg:flex-col bg-black">
-        <div className="flex h-fit flex-col text-white text-lg gap-2 p-5 border rounded-xl lg:mt-2 mb-2 lg:mb-0 justify-between items-center">
+        <div className="flex h-fit flex-col text-white lg:text-lg gap-2 p-5 border rounded-xl mt-0 lg:mt-2 mb-2 lg:mb-0 justify-between items-center">
           {/* Controls for X, Y, Z axis */}
           {directions.map((direction) => (
             <DirectionControl
@@ -82,7 +82,7 @@ export default function Home() {
             <Switch checked={orbitControl} onChange={setOrbitControl} />
           </div>
         </div>
-        <div className="flex w-full h-3/5 lg:mt-10">
+        <div className="flex w-full h-3/5 mt-0 lg:mt-10">
           <ScapulaSphere
             x={xInSceneUnits}
             y={yInSceneUnits}
