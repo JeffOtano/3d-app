@@ -29,6 +29,27 @@ export default function Home() {
   const [orbitControl, setOrbitControl] = useState(false);
 
   useEffect(() => {
+    const lockOrientation = async () => {
+      if (screen.orientation && screen.orientation.lock) {
+        try {
+          await screen.orientation.lock("portrait");
+        } catch (error) {
+          console.error("Screen orientation lock failed:", error);
+        }
+      }
+    };
+
+    lockOrientation();
+
+    // Optional: Unlock when component unmounts
+    return () => {
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -55,7 +76,7 @@ export default function Home() {
   return (
     <main className={`min-h-screen ${inter.className}`}>
       <div className="w-screen h-screen items-center flex flex-col-reverse lg:flex-col bg-black">
-        <div className="flex flex-col text-white text-lg gap-2 p-5 border rounded-lg m-2 w-fit">
+        <div className="flex flex-col text-white text-lg gap-2 p-5 border rounded-lg lg:mt-2 justify-between items-center">
           {/* Controls for X, Y, Z axis */}
           {directions.map((direction) => (
             <DirectionControl

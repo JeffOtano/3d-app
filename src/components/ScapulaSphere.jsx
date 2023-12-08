@@ -1,7 +1,13 @@
 import { Suspense } from "react";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
-import { Canvas, Html, useProgress, useLoader } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera, Sphere } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  Sphere,
+  useProgress,
+  Html,
+} from "@react-three/drei";
 
 const Model = ({ screenScale }) => {
   const geometry = useLoader(STLLoader, "/models/Scapula.stl");
@@ -23,7 +29,7 @@ const Loader = () => {
   const { progress } = useProgress();
   return (
     <Html center>
-      <p className="text-white">{progress} % loaded</p>
+      <div style={{ color: "white" }}>{progress} % loaded</div>
     </Html>
   );
 };
@@ -32,7 +38,7 @@ export const ScapulaSphere = ({ x, y, z, screenScale, orbitControl }) => {
   return (
     <Canvas className="w-full">
       <PerspectiveCamera position={[0, 0, 5]} fov={75} />
-      <Suspense fallback={Loader}>
+      <Suspense fallback={<Loader />}>
         <ambientLight position={[0, 0, 0]} intensity={0.8} />
         <pointLight position={[0, 10, 0]} intensity={100} />
         {orbitControl && <OrbitControls />}
