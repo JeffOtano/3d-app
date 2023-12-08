@@ -29,27 +29,6 @@ export default function Home() {
   const [orbitControl, setOrbitControl] = useState(false);
 
   useEffect(() => {
-    const lockOrientation = async () => {
-      if (screen.orientation && screen.orientation.lock) {
-        try {
-          await screen.orientation.lock("portrait");
-        } catch (error) {
-          console.error("Screen orientation lock failed:", error);
-        }
-      }
-    };
-
-    lockOrientation();
-
-    // Optional: Unlock when component unmounts
-    return () => {
-      if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -89,7 +68,7 @@ export default function Home() {
             <Switch checked={orbitControl} onChange={setOrbitControl} />
           </div>
         </div>
-        <div className="flex w-full h-full items-center justify-center lg:mt-10">
+        <div className="flex w-full items-center justify-center lg:mt-10">
           <ScapulaSphere
             x={xInSceneUnits}
             y={yInSceneUnits}
